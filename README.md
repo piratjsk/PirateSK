@@ -1,0 +1,2 @@
+# PirateSK
+Addon for Skript.
