@@ -1,6 +1,8 @@
 package net.grota.piratesk;
 
+import net.grota.piratesk.bukkit.EffSaveWorlds;
 import net.grota.piratesk.worldedit.EffPasteSchematic;
+import net.grota.piratesk.worldedit.EffSaveSchematic;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.Bukkit;
 
@@ -8,7 +10,6 @@ import ch.njol.skript.Skript;
 import org.mcstats.Metrics;
 
 import java.io.IOException;
-import java.util.logging.Level;
 
 public class PirateSK extends JavaPlugin {
 
@@ -29,12 +30,18 @@ public class PirateSK extends JavaPlugin {
                 // Failed to submit the stats :-(
             }
 
+            // Bukkit elements
+            Skript.registerEffect(EffSaveWorlds.class, "save %worlds%");
+
+            // WorldEdit elements
             if (getServer().getPluginManager().getPlugin("WorldEdit") != null) {
                 Skript.registerEffect(EffPasteSchematic.class,
                         "paste schem[atic] %string% at %location% [(ignor(e|ing)|without|[with] no) air]",
                         "paste schem[atic] %string% at %location% with air");
+                Skript.registerEffect(EffSaveSchematic.class, "save blocks between %location% and %location% to [schem[atic]] [file] %string%");
             }
 
+            // WoldGuard elements
 //          if (getServer().getPluginManager().getPlugin("WorldGuard") != null) {
 //          }
 
