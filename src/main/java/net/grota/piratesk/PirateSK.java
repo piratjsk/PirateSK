@@ -1,8 +1,11 @@
 package net.grota.piratesk;
 
+import ch.njol.skript.lang.ExpressionType;
 import net.grota.piratesk.bukkit.EffSaveWorlds;
+import net.grota.piratesk.bukkit.ExprExplodedBlocks;
 import net.grota.piratesk.worldedit.EffPasteSchematic;
 import net.grota.piratesk.worldedit.EffSaveSchematic;
+import org.bukkit.block.Block;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.Bukkit;
 
@@ -32,6 +35,7 @@ public class PirateSK extends JavaPlugin {
 
             // Bukkit elements
             Skript.registerEffect(EffSaveWorlds.class, "save %worlds%");
+            Skript.registerExpression(ExprExplodedBlocks.class, Block.class, ExpressionType.COMBINED, "exploded[(-| )]blocks");
 
             // WorldEdit elements
             if (getServer().getPluginManager().getPlugin("WorldEdit") != null) {
