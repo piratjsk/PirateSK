@@ -20,18 +20,19 @@ public class PirateSK extends JavaPlugin {
     private static PirateSK instance;
 
     public void onEnable() {
-        if (Bukkit.getPluginManager().getPlugin("Skript") == null || !Skript.isAcceptRegistrations()) {
-            getLogger().info("Unable to find Skript or Skript isn't accepting registrations, disabling PirateSK...");
-            Bukkit.getPluginManager().disablePlugin(this);
-        } else {
+        if (!(Bukkit.getPluginManager().getPlugin("Skript")) == null || Skript.isAcceptRegistrations()) {
             instance = this;
             Skript.registerAddon(this);
+            return;
+        }
+        getLogger().info("Unable to find Skript or Skript isn't accepting registrations, disabling PirateSK...");
+        Bukkit.getPluginManager().disablePlugin(this);
 
             try {
                 Metrics metrics = new Metrics(this);
                 metrics.start();
             } catch (IOException e) {
-                // Failed to submit the stats :-(
+                e.printStackTrace();
             }
 
             // Bukkit elements
