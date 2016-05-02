@@ -4,12 +4,11 @@ import ch.njol.skript.classes.Changer.ChangeMode;
 import ch.njol.skript.expressions.base.SimplePropertyExpression;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.Event;
-import org.eclipse.jdt.annotation.Nullable;
 
 public class ExprEntityAI extends SimplePropertyExpression<LivingEntity, Boolean> {
 
-    public Boolean convert(final LivingEntity en) {
-        return en.hasAI();
+    public Boolean convert(final LivingEntity entity) {
+        return entity.hasAI();
     }
 
     public Class<?>[] acceptChange(final ChangeMode mode) {
@@ -18,7 +17,7 @@ public class ExprEntityAI extends SimplePropertyExpression<LivingEntity, Boolean
         return null;
     }
 
-    public void change(final Event e, @Nullable final Object[] delta, final ChangeMode mode) {
+    public void change(final Event e, final Object[] delta, final ChangeMode mode) {
         if (mode == ChangeMode.DELETE) {
             for (final LivingEntity en : getExpr().getArray(e))
                 en.setAI(false);

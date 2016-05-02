@@ -3,7 +3,7 @@ package net.grota.piratesk.bukkit;
 import ch.njol.skript.ScriptLoader;
 import ch.njol.skript.Skript;
 import ch.njol.skript.lang.Expression;
-import ch.njol.skript.lang.SkriptParser;
+import ch.njol.skript.lang.SkriptParser.ParseResult;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.skript.log.ErrorQuality;
 import ch.njol.util.Kleenean;
@@ -23,7 +23,7 @@ public class ExprExplodedBlocks extends SimpleExpression<Block> {
         return false;
     }
 
-    public boolean init(Expression<?>[] e, int i, Kleenean k, SkriptParser.ParseResult p) {
+    public boolean init(final Expression<?>[] e, final int i, Kleenean k, final ParseResult p) {
         if (!ScriptLoader.isCurrentEvent(EntityExplodeEvent.class)) {
             Skript.error("The expression 'exploded blocks' can only be used in explode events", ErrorQuality.SEMANTIC_ERROR);
             return false;
@@ -31,15 +31,14 @@ public class ExprExplodedBlocks extends SimpleExpression<Block> {
         return true;
     }
 
-    public String toString(Event arg0, boolean arg1) {
+    public String toString(final Event e, final boolean b) {
         return "exploded blocks";
     }
 
-    protected Block[] get(Event e) {
+    protected Block[] get(final Event e) {
         if (e instanceof EntityExplodeEvent) {
-            List<Block> list = ((EntityExplodeEvent) e).blockList();
-            Block[] blocks = list.toArray(new Block[0]);
-            return blocks;
+            final List<Block> list = ((EntityExplodeEvent) e).blockList();
+            return list.toArray(new Block[0]);
         }
         return null;
     }

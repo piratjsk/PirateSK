@@ -1,12 +1,12 @@
 package net.grota.piratesk;
 
 import ch.njol.skript.lang.ExpressionType;
-import net.grota.piratesk.bukkit.EffSaveWorlds;
-import net.grota.piratesk.bukkit.ExprEntityAI;
-import net.grota.piratesk.bukkit.ExprExplodedBlocks;
+import ch.njol.skript.util.Timespan;
+import net.grota.piratesk.bukkit.*;
 import net.grota.piratesk.worldedit.EffPasteSchematic;
 import net.grota.piratesk.worldedit.EffSaveSchematic;
 import org.bukkit.block.Block;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.Bukkit;
 
@@ -23,35 +23,38 @@ public class PirateSK extends JavaPlugin {
         if (Bukkit.getPluginManager().getPlugin("Skript") == null || !Skript.isAcceptRegistrations()) {
             getLogger().info("Unable to find Skript or Skript isn't accepting registrations, disabling PirateSK...");
             Bukkit.getPluginManager().disablePlugin(this);
-        } else {
-            instance = this;
-            Skript.registerAddon(this);
-
-            try {
-                Metrics metrics = new Metrics(this);
-                metrics.start();
-            } catch (IOException e) {
-                // Failed to submit the stats :-(
-            }
-
-            // Bukkit elements
-            Skript.registerEffect(EffSaveWorlds.class, "save %worlds%");
-            Skript.registerExpression(ExprExplodedBlocks.class, Block.class, ExpressionType.SIMPLE, "exploded[(-| )]blocks");
-            Skript.registerExpression(ExprEntityAI.class, Boolean.class, ExpressionType.PROPERTY, "[the] ai of %livingentities%", "%livingentities%'[s] ai");
-
-            // WorldEdit elements
-            if (getServer().getPluginManager().getPlugin("WorldEdit") != null) {
-                Skript.registerEffect(EffPasteSchematic.class,
-                        "paste schem[atic] %string% at %location% [(ignor(e|ing)|without|[with] no) air]",
-                        "paste schem[atic] %string% at %location% with air");
-                Skript.registerEffect(EffSaveSchematic.class, "save blocks between %location% and %location% to [schem[atic]] [file] %string%");
-            }
-
-            // WoldGuard elements
-//          if (getServer().getPluginManager().getPlugin("WorldGuard") != null) {
-//          }
-
+            return;
         }
+
+        instance = this;
+        Skript.registerAddon(this);
+
+        try {
+            final Metrics metrics = new Metrics(this);
+            metrics.start();
+        } catch (final IOException e) {}
+
+        // Bukkit elements
+        Skript.registerEffect(EffSaveWorlds.class, "save %worlds%");
+        Skript.registerExpression(ExprExplodedBlocks.class, Block.class, ExpressionType.SIMPLE, "exploded[(-| )]blocks");
+        Skript.registerExpression(ExprEntityAI.class, Boolean.class, ExpressionType.PROPERTY, "[the] ai of %livingentities%", "%livingentities%'[s] ai");
+        Skript.registerExpression(ExprInvulnerabilityTime.class, Timespan.class, ExpressionType.PROPERTY, "[the] (invulnerability [time]|no damage [time]) of %livingentity%", "%livingentity%'s (invulnerability [time]|no damage [time])");
+        Skript.registerEffect(EffTame.class, "tame %entities% (to|for) %player%", "untame %entities%");
+        Skript.registerCondition(CondIsTamed.class, "%entity% is tamed", "%entity% (is not|isn't) tamed");
+        Skript.registerExpression(ExprTameOwner.class, Player.class, ExpressionType.PROPERTY, "%entities%'s (tamer|[pet] owner)", "[the] (tamer|[pet] owner) of %entities%");
+
+        // WorldEdit elements
+        if (getServer().getPluginManager().getPlugin("WorldEdit") != null) {
+            Skript.registerEffect(EffPasteSchematic.class,
+                    "paste schem[atic] %string% at %location% [(ignor(e|ing)|without|[with] no) air]",
+                    "paste schem[atic] %string% at %location% with air");
+            Skript.registerEffect(EffSaveSchematic.class, "save blocks between %location% and %location% to [schem[atic]] [file] %string%");
+        }
+
+        // WoldGuard elements
+//      if (getServer().getPluginManager().getPlugin("WorldGuard") != null) {
+//      }
+
     }
 
     public static PirateSK getInstance() {
