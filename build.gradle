@@ -9,7 +9,6 @@ targetCompatibility = 1.8
 repositories {
   jcenter()
   maven { url 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
-  maven { url 'https://jitpack.io' }
   maven { url 'http://maven.sk89q.com/repo/' }
 }
 
