@@ -17,6 +17,7 @@ dependencies {
   compile 'org.bukkit:bukkit:1.12-R0.1-SNAPSHOT'
   compile files('libs/Skript.jar')
   compile 'com.sk89q.worldedit:worldedit-bukkit:6.1.5'
+  compile 'com.sk89q.worldedit:worldedit-core:6.1.4-SNAPSHOT'
   compile 'com.sk89q.worldguard:worldguard-legacy:6.2'
 }
 
