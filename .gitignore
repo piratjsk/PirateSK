@@ -1,4 +1,4 @@
-/test-server/*
-/target/*
-/.idea/*
-PirateSK.iml
+.*
+!.gitignore
+build
+*.iml

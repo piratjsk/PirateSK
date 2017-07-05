@@ -1,0 +1,44 @@
+apply plugin: 'java'
+
+group = 'net.piratjsk'
+version = '1.0-dev'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+  jcenter()
+  maven { url 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
+  maven { url 'https://jitpack.io' }
+  maven { url 'http://maven.sk89q.com/repo/' }
+}
+
+dependencies {
+  compile 'org.bukkit:bukkit:1.12-R0.1-SNAPSHOT'
+  compile files('libs/Skript.jar')
+  compile 'com.sk89q.worldedit:worldedit-bukkit:6.1.5'
+  compile 'com.sk89q.worldguard:worldguard-legacy:6.2'
+}
+
+import org.apache.tools.ant.filters.ReplaceTokens
+
+processResources {
+  from('src/main/resources') {
+    filter ReplaceTokens, tokens: [version: version]
+  }
+}
+
+jar {
+  from 'LICENSE'
+}
+
+task('setupSkriptDependency') {
+  def dir = new File('libs')
+  if( !dir.exists() ) { dir.mkdirs() }
+  def f = new File(dir, 'Skript.jar')
+  if (!f.exists()) {
+    new URL('https://github.com/bensku/Skript/releases/download/dev29/Skript.jar').withInputStream{ i -> f.withOutputStream{ it << i }}
+  }
+}
+
+compileJava.dependsOn setupSkriptDependency

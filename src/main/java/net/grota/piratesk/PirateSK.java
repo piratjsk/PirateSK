@@ -11,9 +11,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.Bukkit;
 
 import ch.njol.skript.Skript;
-import org.mcstats.Metrics;
-
-import java.io.IOException;
 
 public class PirateSK extends JavaPlugin {
 
@@ -28,11 +25,6 @@ public class PirateSK extends JavaPlugin {
 
         instance = this;
         Skript.registerAddon(this);
-
-        try {
-            final Metrics metrics = new Metrics(this);
-            metrics.start();
-        } catch (final IOException e) {}
 
         // Bukkit elements
         Skript.registerEffect(EffSaveWorlds.class, "save %worlds%");

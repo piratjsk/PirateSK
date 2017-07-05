@@ -1,5 +1,7 @@
-name: ${project.name}
-main: net.grota.piratesk.PirateSK
+name: PirateSK
+version: @version@
 author: piratjsk
-version: ${project.version}
+
+main: net.grota.piratesk.PirateSK
+
 softdepend: [Skript, WorldEdit, WorldGuard]
