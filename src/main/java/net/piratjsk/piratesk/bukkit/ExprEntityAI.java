@@ -1,11 +1,11 @@
-package net.grota.piratesk.bukkit;
+package net.piratjsk.piratesk.bukkit;
 
 import ch.njol.skript.classes.Changer.ChangeMode;
 import ch.njol.skript.expressions.base.SimplePropertyExpression;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.Event;
 
-public class ExprEntityAI extends SimplePropertyExpression<LivingEntity, Boolean> {
+public final class ExprEntityAI extends SimplePropertyExpression<LivingEntity, Boolean> {
 
     public Boolean convert(final LivingEntity entity) {
         return entity.hasAI();

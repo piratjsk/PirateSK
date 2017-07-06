@@ -1,4 +1,4 @@
-package net.grota.piratesk.bukkit;
+package net.piratjsk.piratesk.bukkit;
 
 import ch.njol.skript.classes.Changer.ChangeMode;
 import ch.njol.skript.expressions.base.SimplePropertyExpression;
@@ -7,7 +7,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.entity.Tameable;
 import org.bukkit.event.Event;
 
-public class ExprTameOwner extends SimplePropertyExpression<Entity, Player> {
+public final class ExprTameOwner extends SimplePropertyExpression<Entity, Player> {
 
     protected String getPropertyName() {
         return "owner";

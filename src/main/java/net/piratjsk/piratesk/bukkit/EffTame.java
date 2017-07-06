@@ -1,4 +1,4 @@
-package net.grota.piratesk.bukkit;
+package net.piratjsk.piratesk.bukkit;
 
 import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
@@ -13,9 +13,9 @@ public class EffTame extends Effect {
 
     // "tame %livingentities% (to|for) %player%", "untame %livingentities%"
 
-    Expression<Entity> entity;
-    Expression<Player> player;
-    boolean tame;
+    private Expression<Entity> entity;
+    private Expression<Player> player;
+    private boolean tame;
 
     protected void execute(final Event e) {
         Entity[] entities = this.entity.getAll(e);

@@ -2,6 +2,6 @@ name: PirateSK
 version: @version@
 author: piratjsk
 
-main: net.grota.piratesk.PirateSK
+main: net.piratjsk.piratesk.PirateSK
 
 softdepend: [Skript, WorldEdit, WorldGuard]

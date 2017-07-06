@@ -1,4 +1,4 @@
-package net.grota.piratesk.worldedit;
+package net.piratjsk.piratesk.worldedit;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.lang.Effect;
@@ -14,7 +14,7 @@ import org.bukkit.event.Event;
 import java.io.File;
 import java.util.regex.Matcher;
 
-public class EffPasteSchematic extends Effect {
+public final class EffPasteSchematic extends Effect {
 
     private Expression<Location> loc;
     private Expression<String> path;

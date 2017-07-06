@@ -1,4 +1,4 @@
-package net.grota.piratesk.bukkit;
+package net.piratjsk.piratesk.bukkit;
 
 import ch.njol.skript.ScriptLoader;
 import ch.njol.skript.Skript;
@@ -13,7 +13,7 @@ import org.bukkit.event.entity.EntityExplodeEvent;
 
 import java.util.List;
 
-public class ExprExplodedBlocks extends SimpleExpression<Block> {
+public final class ExprExplodedBlocks extends SimpleExpression<Block> {
 
     public Class<? extends Block> getReturnType() {
         return Block.class;

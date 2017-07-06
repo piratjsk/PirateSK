@@ -1,4 +1,4 @@
-package net.grota.piratesk.worldedit;
+package net.piratjsk.piratesk.worldedit;
 
 import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
@@ -18,7 +18,7 @@ import org.bukkit.event.Event;
 import java.io.File;
 import java.util.regex.Matcher;
 
-public class EffSaveSchematic extends Effect {
+public final class EffSaveSchematic extends Effect {
 
     private Expression<Location> loc1;
     private Expression<Location> loc2;

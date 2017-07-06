@@ -1,4 +1,4 @@
-package net.grota.piratesk.bukkit;
+package net.piratjsk.piratesk.bukkit;
 
 import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
@@ -7,7 +7,7 @@ import ch.njol.util.Kleenean;
 import org.bukkit.World;
 import org.bukkit.event.Event;
 
-public class EffSaveWorlds extends Effect {
+public final class EffSaveWorlds extends Effect {
 
     private Expression<World> worlds;
 
